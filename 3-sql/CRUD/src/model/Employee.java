@@ -10,6 +10,7 @@ public class Employee {
     private String ma_surname;
     private String email;
     private Float salary;
+    private  String curp;
 
     public Employee() {
     }
@@ -69,6 +70,14 @@ public class Employee {
 
     public void setSalary(Float salary) {
         this.salary = salary;
+    }
+
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
 
     @Override
