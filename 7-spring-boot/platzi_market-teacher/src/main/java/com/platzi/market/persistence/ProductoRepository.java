@@ -12,9 +12,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+// esta clase interactura directamente con la base de datos por eso se le pone la anotacion @Repository
 @Repository
-public class ProductoRepository implements ProductRepository {
-    @Autowired
+public class ProductoRepository implements ProductoCrudRepository {
+    @Autowired // este se encarga de hacer la inyeccion de dependencias.
     private ProductoCrudRepository productoCrudRepository;
 
     @Autowired

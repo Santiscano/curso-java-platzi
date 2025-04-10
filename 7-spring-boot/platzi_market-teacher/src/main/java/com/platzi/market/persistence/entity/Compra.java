@@ -21,7 +21,7 @@ public class Compra {
     private String idCliente;
 
     @Getter @Setter
-    private LocalDateTime fecha;
+    private LocalDateTime fecha; // LocalDateTime es una clase de Java 8 que permite manejar fechas y horas
 
     @Getter @Setter
     @Column(name = "medio_pago")

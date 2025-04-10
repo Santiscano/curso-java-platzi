@@ -23,20 +23,20 @@ public class KafkaConsumerConfig {
 
     public Map<String, Object> consumerConfig(){
         Map<String, Object> properties = new HashMap<>();
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers); // este es el servidor de kafka
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class); // este se encarga de deserializar la clave del mensaje que se envia al topic
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringSerializer.class); // este se encarga de deserializar el valor del mensaje que se envia al topic
         return properties;
     }
 
     @Bean
-    public ConsumerFactory<String, String> consumerFactory(){
-        return new DefaultKafkaConsumerFactory<>(consumerConfig());
+    public ConsumerFactory<String, String> consumerFactory(){ // se crea un consumidor de kafka con las propiedades configuradas en consumerConfig
+        return new DefaultKafkaConsumerFactory<>(consumerConfig()); // se crea un consumidor de kafka con las propiedades configuradas
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> consumer(ConsumerFactory consumerFactory) {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> consumer(ConsumerFactory consumerFactory) { // se crea un listener de kafka con las propiedades configuradas en consumerFactory y se le pasa el consumidor de kafka como parametro para que lo gestione spring
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>(); // se crea un listener de kafka con las propiedades configuradas en consumerFactory y se le pasa el consumidor de kafka como parametro para que lo gestione spring
         factory.setConsumerFactory(consumerFactory);
         return factory;
     }

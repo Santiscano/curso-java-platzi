@@ -1,0 +1,46 @@
+controller ->
+
+/src/main/java/com/tuempresa/tuapp
+│─── application/               # Casos de uso (Lógica de negocio)
+│    ├── service/               # Servicios de aplicación (orquestan lógica)
+│    ├── dto/                   # Objetos de transferencia de datos
+│    ├── mapper/                # Mapeo entre DTOs y entidades
+│    ├── exception/             # Excepciones específicas de la aplicación
+│
+│─── domain/                    # Dominio (Reglas de negocio puras)
+│    ├── model/                 # Entidades (sin @Entity)
+│    ├── service/               # Reglas de negocio puras
+│    ├── repository/            # Interfaces de repositorios
+│
+│─── infrastructure/            # Adaptadores a tecnologías externas
+│    ├── adapter/
+│    │    ├── rest/             # Controladores REST
+│    │    ├── persistence/      # Repositorios JPA y entidades con @Entity (JPA, MongoDB, etc.)
+│    │    ├── messaging/        # Integraciones con mensajería (Kafka, RabbitMQ)
+│    │    ├── config/           # Configuraciones de Spring (Beans, Security, etc.)
+│    ├── security/              # Configuraciones de seguridad
+│    ├── config/                # Configuraciones generales de la aplicación
+
+
+// flujo de datos
+web/constroller/PurchaseController -> domain/service/PurchaseService -> domain/repository/PurchaseRepository ->
+persistance/ComprasRepository -> persistance/crud/ComprasCrudRepository
+
+
+src/
+├── application/
+│   ├── dto/
+│   │   ├── task.dto.ts
+│   ├── services/
+│   |   └── task.service.ts
+├── domain/
+│   ├── entities/
+│   │   └── task.entity.ts
+│   ├── interfaces/
+│   │   └── task.d.ts
+├── infrastructure/
+│   └── controllers/
+│   │   └── task.controller.ts
+│   ├── repositories/
+│   │   └── task.repository.ts
+├── app.module.ts

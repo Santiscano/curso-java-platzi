@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/products")
+@RestController // define que esta clase es un controlador
+@RequestMapping("/products") // define la ruta base de la clase para acceder a los metodos
 public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/")
-    @ApiOperation("Get all supermarket products")
-    @ApiResponse(code = 200, message = "OK")
+    @GetMapping("/") // define que es un metodo get y la ruta, en este caso la raiz
+    @ApiOperation("Get all supermarket products") // documentacion de la api
+    @ApiResponse(code = 200, message = "OK") // documentacion de la api
+    // ResponseEntity es una clase de spring que permite devolver una respuesta http
     public ResponseEntity<List<Product>> getAll() {
+        // responseEntity recibe como primer parametro el cuerpo de la respuesta y como segundo estado de la respuesta
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
@@ -35,8 +37,12 @@ public class ProductController {
     public ResponseEntity<Product> getProduct(@ApiParam(value = "The id of the product", required = true, example = "7")
                                                 @PathVariable("id") int productId) {
         return productService.getProduct(productId)
+                // este map no es el mismo que el de java, este map es de optional que lo que hace es que si el optional tiene un valor lo devuelve, si no devuelve un optional vacio
                 .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                // orElse es un metodo de optional que se ejecuta si el optional esta vacio
+        // nueva opcion
+        return ResponseEntity.of(productService.getProduct(productId));
     }
 
     @GetMapping("/category/{categoryId}")

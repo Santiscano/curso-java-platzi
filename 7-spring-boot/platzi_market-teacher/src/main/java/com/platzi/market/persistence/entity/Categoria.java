@@ -22,7 +22,7 @@ public class Categoria {
     @Getter @Setter
     private Boolean estado;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria") // en mappedBy se pone el nombre de la variable en la clase Producto
     private List<Producto> productos;
 
 }

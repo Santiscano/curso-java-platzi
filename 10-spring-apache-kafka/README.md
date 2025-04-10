@@ -26,3 +26,6 @@ primero instalar
 ▶️ Inicia una consola para enviar mensajes a un topic específico
 .\bin\windows\kafka-console-producer.bat --broker-list {host}:9092 --topic {topic-name}
 
+
+### BANNER
+https://devops.datenkollektiv.de/banner.txt/index.html

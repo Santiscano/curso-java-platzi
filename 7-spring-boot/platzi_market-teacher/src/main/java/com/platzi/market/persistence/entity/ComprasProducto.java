@@ -8,7 +8,7 @@ import lombok.Setter;
 @Table(name = "compras_productos")
 public class ComprasProducto {
     @Getter @Setter
-    @EmbeddedId
+    @EmbeddedId // se utiliza cuando la llave primaria es compuesta y esta dada por la clase ComprasProductoPK
     private ComprasProductoPK id;
 
     @Getter @Setter

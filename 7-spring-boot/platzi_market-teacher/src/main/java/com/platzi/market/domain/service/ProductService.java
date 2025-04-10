@@ -30,7 +30,7 @@ public class ProductService {
     }
 
     public boolean delete(int productId) {
-        return getProduct(productId).map(product -> {
+        return getProduct(productId).map(product -> { // SE USA MAP AUNQUE NO ES UNA LISTA, ESTO ES PORQUE EL METODO GETPRODUCT DEVUELVE UN OPTIONAL Y MAP SE PUEDE USAR CON OPTIONAL
             productRepository.delete(productId);
             return true;
         }).orElse(false);

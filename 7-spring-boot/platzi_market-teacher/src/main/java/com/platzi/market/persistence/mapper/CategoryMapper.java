@@ -9,14 +9,15 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
+    // source es el nombre de la variable en Categoria y target en Category, y se indica como se van a mapear
     @Mappings({
             @Mapping(source = "idCategoria", target = "categoryId"),
             @Mapping(source = "descripcion", target = "category"),
             @Mapping(source = "estado", target = "active"),
     })
-    Category toCategory(Categoria categoria);
+    Category toCategory(Categoria categoria); // de categoria a category
 
-    @InheritInverseConfiguration // esta anotación permite que se haga la conversión inversa
-    @Mapping(target = "productos", ignore = true)
+    @InheritInverseConfiguration // esta anotación permite que se haga la conversión inversa a la del Mapping de arriba
+    @Mapping(target = "productos", ignore = true) // en este caso se ignora la variable productos hacia Category
     Categoria toCategoria(Category category);
 }
