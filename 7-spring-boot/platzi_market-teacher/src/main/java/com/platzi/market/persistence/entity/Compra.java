@@ -21,6 +21,7 @@ public class Compra {
     private String idCliente;
 
     @Getter @Setter
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Bogota")
     private LocalDateTime fecha; // LocalDateTime es una clase de Java 8 que permite manejar fechas y horas
 
     @Getter @Setter
